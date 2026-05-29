@@ -190,6 +190,73 @@
   .mode-detail .feature-item strong { color: #ddd; display: block; margin-bottom: 0.3rem; }
   .mode-detail .feature-item span { color: #778899; font-size: 0.85rem; }
 
+  /* ========== Filter Ranking ========== */
+  .ranking-hero {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .ranking-badge {
+    display: inline-block; padding: 0.3rem 1rem;
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    border-radius: 100px; font-size: 0.8rem; font-weight: 700;
+    color: #fff; letter-spacing: 0.1em; margin-bottom: 0.5rem;
+  }
+  .rank-table {
+    width: 100%; border-collapse: collapse;
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 3rem;
+  }
+  .rank-table thead th {
+    background: rgba(77,166,255,0.1);
+    padding: 1rem 1.2rem; text-align: left;
+    font-size: 0.85rem; color: #4da6ff; font-weight: 600;
+  }
+  .rank-table tbody td {
+    padding: 0.9rem 1.2rem; font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+  }
+  .rank-table tbody tr { transition: all 0.2s; }
+  .rank-table tbody tr:hover { background: rgba(77,166,255,0.05); }
+  .rank-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    font-weight: 700; font-size: 0.95rem;
+  }
+  .rank-1 { background: linear-gradient(135deg, #ffd700, #ffb800); color: #1a1a1a; }
+  .rank-2 { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #1a1a1a; }
+  .rank-3 { background: linear-gradient(135deg, #cd7f32, #b8702a); color: #fff; }
+  .rank-other { background: rgba(255,255,255,0.06); color: #8899aa; }
+  .star-rating { color: #ffb800; letter-spacing: 2px; }
+  .filter-tag {
+    display: inline-block; padding: 0.2rem 0.6rem;
+    border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+  }
+  .tag-digital { background: rgba(77,166,255,0.15); color: #4da6ff; }
+  .tag-physical { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+  .tag-formula { background: rgba(80,200,120,0.15); color: #50c878; }
+  .formula-card {
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 1.5rem; transition: all 0.3s;
+  }
+  .formula-card:hover { border-color: rgba(80,200,120,0.3); transform: translateY(-2px); }
+  .formula-card h4 { color: #50c878; margin-bottom: 0.75rem; font-size: 1rem; }
+  .formula-card .params { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.82rem; color: #8899aa; line-height: 1.8; }
+  .formula-card .params span { color: #ccc; }
+  .tab-nav {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .tab-btn {
+    padding: 0.6rem 1.3rem; border-radius: 100px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    color: #8899aa; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: rgba(77,166,255,0.12); border-color: rgba(77,166,255,0.5); color: #4da6ff;
+  }
+  .tab-panel { display: none; animation: fadeIn 0.3s; }
+  .tab-panel.show { display: block; }
+
   /* ========== Quick Tips ========== */
   .tip-card {
     background: linear-gradient(135deg, rgba(77,166,255,0.06), rgba(77,166,255,0.01));
@@ -267,6 +334,7 @@
     <a href="#specs" data-target="specs">📋 规格参数</a>
     <a href="#quickstart" data-target="quickstart">🚀 快速上手</a>
     <a href="#modes" data-target="modes">🎬 拍摄模式</a>
+    <a href="#filters" data-target="filters">🎨 滤镜排行</a>
     <a href="#settings" data-target="settings">⚙️ 设置推荐</a>
     <a href="#tips" data-target="tips">💡 进阶技巧</a>
     <a href="#glossary" data-target="glossary">📖 术语解释</a>
@@ -450,6 +518,267 @@
         <div class="feature-item"><strong>连接方式</strong><span>Wi-Fi 直连手机，在 Mimo App 内开启直播</span></div>
         <div class="feature-item"><strong>支持平台</strong><span>抖音、快手、微信视频号等（通过 RTMP 推流）</span></div>
         <div class="feature-item"><strong>分辨率</strong><span>最高 1080p 直播推流</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Section 3.5: Filter Rankings ========== -->
+<section id="filters">
+  <div class="container">
+    <div class="ranking-hero">
+      <span class="ranking-badge">🔥 2025-2026 最新排行榜</span>
+      <h2 class="section-title">🎨 Pocket 3 滤镜排行榜</h2>
+      <p class="section-sub">Mimo App 内置滤镜 + 物理滤镜 + 场景调色公式 · 全网口碑综合排名</p>
+    </div>
+
+    <!-- ===== Tab Navigation ===== -->
+    <div class="tab-nav" id="filterTabs">
+      <button class="tab-btn active" data-panel="panel-digital">📱 Mimo App 滤镜 Top 10</button>
+      <button class="tab-btn" data-panel="panel-physical">🔧 物理镜头滤镜</button>
+      <button class="tab-btn" data-panel="panel-formula">🎯 场景调色公式</button>
+    </div>
+
+    <!-- ===== Panel 1: Mimo App Digital Filters ===== -->
+    <div class="tab-panel show" id="panel-digital">
+      <p style="color:#8899aa;margin-bottom:1.5rem;font-size:0.9rem">
+        📱 DJI Mimo v2.7.2+ 「色彩配方」24 款官方滤镜中，综合画质口碑与使用频次选出 Top 10。滤镜名后数字为推荐强度百分比。
+      </p>
+      <table class="rank-table">
+        <thead>
+          <tr><th>#</th><th>滤镜名称</th><th>所属系列</th><th>最佳场景</th><th>口碑评分</th><th>一句话点评</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-num rank-1">1</span></td>
+            <td style="color:#fff;font-weight:600">NC卷</td>
+            <td><span class="filter-tag tag-digital">日系</span></td>
+            <td>阴雨天 · 日常街拍</td>
+            <td class="star-rating">★★★★★</td>
+            <td style="color:#8899aa">降对比+微青色调，拯救灰暗画面，故事感拉满</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-2">2</span></td>
+            <td style="color:#fff;font-weight:600">质感金</td>
+            <td><span class="filter-tag tag-digital">金胶</span></td>
+            <td>晴天建筑 · 旅行风光</td>
+            <td class="star-rating">★★★★★</td>
+            <td style="color:#8899aa">一键强化光影层次，直出电影感</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-3">3</span></td>
+            <td style="color:#fff;font-weight:600">清透像</td>
+            <td><span class="filter-tag tag-digital">人像</span></td>
+            <td>自拍 · 人物特写</td>
+            <td class="star-rating">★★★★★</td>
+            <td style="color:#8899aa">智能提亮肤色，暗黄肤色救星</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">4</span></td>
+            <td style="color:#fff;font-weight:600">密林 +75</td>
+            <td><span class="filter-tag tag-digital">清新</span></td>
+            <td>日系清透风 · 小红书爆款</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">复刻理光相机通透质感，社交平台人气王</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">5</span></td>
+            <td style="color:#fff;font-weight:600">摩卡 +85</td>
+            <td><span class="filter-tag tag-digital">温暖复古</span></td>
+            <td>日常 · 生活碎片</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">日系复古基调，自带胶片氛围感</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">6</span></td>
+            <td style="color:#fff;font-weight:600">大师 · 冬 +30</td>
+            <td><span class="filter-tag tag-digital">大师系列</span></td>
+            <td>雪景 · 冬季户外</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">2026 雪景专属 Top 1，冷调通透不沉闷</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">7</span></td>
+            <td style="color:#fff;font-weight:600">大师 · 春</td>
+            <td><span class="filter-tag tag-digital">大师系列</span></td>
+            <td>晚霞 · 暖调风光</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">晚霞场景专用，暖而不腻</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">8</span></td>
+            <td style="color:#fff;font-weight:600">往事 -84</td>
+            <td><span class="filter-tag tag-digital">电影系列</span></td>
+            <td>秋日落叶 · 怀旧风</td>
+            <td class="star-rating">★★★☆☆</td>
+            <td style="color:#8899aa">秋日氛围专属滤镜，温暖回忆感</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">9</span></td>
+            <td style="color:#fff;font-weight:600">芳华 +50</td>
+            <td><span class="filter-tag tag-digital">胶片系列</span></td>
+            <td>雪景 · 复古街拍</td>
+            <td class="star-rating">★★★☆☆</td>
+            <td style="color:#8899aa">复古通透质感，胶片味十足</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">10</span></td>
+            <td style="color:#fff;font-weight:600">山泉 30%</td>
+            <td><span class="filter-tag tag-digital">清新</span></td>
+            <td>居家 · 探店</td>
+            <td class="star-rating">★★★☆☆</td>
+            <td style="color:#8899aa">富士胶片感平替，暗部细节丰富</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-card">
+        <h4>🏆 覆盖 90% 场景的三大「王炸」配方</h4>
+        <p>
+          📸 <strong>日系扫街</strong> → NC卷（更自然可选「经典卷」）<br>
+          🎬 <strong>风光大片</strong> → 质感金（夕阳加强选「日光金」）<br>
+          👤 <strong>人像特写</strong> → 清透像（柔和版选「奶油像」）
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== Panel 2: Physical Lens Filters ===== -->
+    <div class="tab-panel" id="panel-physical">
+      <p style="color:#8899aa;margin-bottom:1.5rem;font-size:0.9rem">
+        🔧 拍摄前安装在镜头前方的物理滤镜，<strong style="color:#ff6b6b">画质无损</strong>，后期无法完全模拟。按实用价值排名。
+      </p>
+      <table class="rank-table">
+        <thead>
+          <tr><th>#</th><th>滤镜类型</th><th>核心用途</th><th>推荐场景</th><th>必买指数</th><th>选购建议</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-num rank-1">1</span></td>
+            <td style="color:#fff;font-weight:600">ND 减光镜</td>
+            <td>强光下控制快门速度，获得电影感运动模糊</td>
+            <td>晴天户外 · 水流瀑布 · 追车</td>
+            <td class="star-rating">★★★★★</td>
+            <td style="color:#8899aa">ND16 / ND64 最常用，建议买套装</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-2">2</span></td>
+            <td style="color:#fff;font-weight:600">1/4 黑柔滤镜</td>
+            <td>柔化高光 · 逆光人像梦幻光晕 · 自然美肤</td>
+            <td>逆光人像 · 夜景灯光 · Vlog</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">日常挂机首选，效果肉眼可见</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-3">3</span></td>
+            <td style="color:#fff;font-weight:600">CPL 偏振镜</td>
+            <td>消除水面/玻璃反光，让天空更蓝、绿叶更饱和</td>
+            <td>海边 · 车窗外 · 蓝天风光</td>
+            <td class="star-rating">★★★★☆</td>
+            <td style="color:#8899aa">效果明显但不能和 ND 同时用</td>
+          </tr>
+          <tr>
+            <td><span class="rank-num rank-other">4</span></td>
+            <td style="color:#fff;font-weight:600">LPR 抗光害滤镜</td>
+            <td>过滤城市人造光污染，夜空更纯净</td>
+            <td>城市夜景 · 霓虹灯街拍</td>
+            <td class="star-rating">★★★☆☆</td>
+            <td style="color:#8899aa">夜景爱好者推荐，白天取下</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-card">
+        <h4>📦 三镜一步到位组合方案</h4>
+        <p>
+          🏔️ <strong>雪山/海滩</strong> — ND 减光镜（控制强光 + 电影模糊）<br>
+          🌃 <strong>城市夜景</strong> — LPR 抗光害滤镜（压制光污染）<br>
+          👤 <strong>逆光人像</strong> — 1/4 黑柔滤镜（梦幻光晕 + 自然美肤）<br>
+          <span style="color:#667788">💡 三片滤镜总价约 ¥200-400，是 Pocket 3 最值得投资的配件组合</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== Panel 3: Scene Formulas ===== -->
+    <div class="tab-panel" id="panel-formula">
+      <p style="color:#8899aa;margin-bottom:1.5rem;font-size:0.9rem">
+        🎯 热门场景的滤镜 + 参数微调公式，按小红书/抖音热度排名。参数均为参考值，实际拍摄需根据光线灵活微调 ±5。
+      </p>
+      <div class="card-grid">
+        <div class="formula-card">
+          <h4>🥇 日系清透 · 理光复刻</h4>
+          <div class="params">
+            <span>滤镜：</span>密林 +75%<br>
+            <span>微调：</span>对比度+3 | 白色+25 | 黑色+8 | 饱和度-15 | 色温-4<br>
+            <span>前期：</span>1.3-1.5x 中焦 | 4K60 | 曝光 -0.3EV
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🥈 富士胶片感 · 扫街利器</h4>
+          <div class="params">
+            <span>滤镜：</span>山泉 30%<br>
+            <span>微调：</span>对比度+8 | 饱和度-5 | 锐度+25<br>
+            <span>前期：</span>4K30 | 中焦 | 白平衡 5200K
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🥉 暖调复古 · 理光平替</h4>
+          <div class="params">
+            <span>滤镜：</span>摩卡 +85%<br>
+            <span>微调：</span>白色+15 | 黑色+18 | 饱和度+8 | 色温-5 | 晕影+30<br>
+            <span>效果：</span>日系复古基调，胶片氛围感
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🏅 雪景通透</h4>
+          <div class="params">
+            <span>滤镜：</span>大师·冬 +30%<br>
+            <span>微调：</span>曝光+5 | 对比度-10 | 自然饱和度+6<br>
+            <span>前期：</span>白平衡 4900K | 曝光 -0.3EV
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🏅 秋日氛围</h4>
+          <div class="params">
+            <span>滤镜：</span>往事(电影) +84%<br>
+            <span>微调：</span>对比度+8 | 高光+5 | 自然饱和度+3<br>
+            <span>前期：</span>白平衡 5600K | 逆光时段拍摄
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🏅 冷白皮人像</h4>
+          <div class="params">
+            <span>滤镜：</span>清透像 / 大师·冬 +50%<br>
+            <span>微调：</span>曝光+10 | 亮度+6 | 色调-3<br>
+            <span>前期：</span>白平衡 4800K | 曝光 +0.3EV | 锐度-2
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🏅 雪山质感大片</h4>
+          <div class="params">
+            <span>滤镜：</span>质感金 +50%<br>
+            <span>微调：</span>曝光+5 | 亮度+5<br>
+            <span>前期：</span>白平衡 4900K | D-Log M | ND 减光镜
+          </div>
+        </div>
+        <div class="formula-card">
+          <h4>🏅 暗调发光 · 夜景逆光</h4>
+          <div class="params">
+            <span>无滤镜 · 纯手动</span><br>
+            <span>微调：</span>对比度+16 | 阴影-20 | 黑色+10 | 锐度+50<br>
+            <span>前期：</span>曝光 -2.0EV | 10bit | 逆光拍摄
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card" style="margin-top:2rem">
+        <h4>⚡ 前期黄金参数 · 后期事半功倍</h4>
+        <p>
+          🎨 <strong>色彩模式</strong>：D-Log M（需后期）/ 普通 10bit（直出）<br>
+          📐 <strong>快门法则</strong>：帧率 × 2（4K30 → 1/60s，4K60 → 1/120s）<br>
+          🔆 <strong>ISO 上限</strong>：800 以内（白天 50-200 最佳）<br>
+          🌡️ <strong>白平衡</strong>：4800-5200K 手动锁定，拒绝自动<br>
+          🔪 <strong>锐度</strong>：-2 &nbsp;|&nbsp; 🧹 <strong>降噪</strong>：-1 &nbsp;|&nbsp; ☀️ <strong>曝光补偿</strong>：-0.3~-0.7EV
+        </p>
       </div>
     </div>
   </div>
@@ -718,6 +1047,21 @@ glossaryItems.forEach(item => {
     });
     // Toggle this one
     item.classList.toggle('expanded');
+  });
+});
+
+// ========== Filter Tabs ==========
+const filterTabBtns = document.querySelectorAll('#filterTabs .tab-btn');
+const filterPanels = document.querySelectorAll('.tab-panel');
+
+filterTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterTabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const panelId = btn.getAttribute('data-panel');
+    filterPanels.forEach(p => p.classList.remove('show'));
+    document.getElementById(panelId).classList.add('show');
   });
 });
 </script>
